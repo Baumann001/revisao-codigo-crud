@@ -3,11 +3,12 @@
 $host = "localhost";
 $user = "root";
 $password = "";
-$db = "crud_exemplo";
+$dbname = "crud_exemplo";
 
-$conn = mysqli_connect($hot, $user, $password, $db); // Erro: $hot ao invés de $host
+$conn = mysqli_connect($host, $user, $password, $dbname); 
 
-if (!$conn) {
-    echo "Falha na conexão!";
+if (!$conn->connect_error)) {
+     die("Conexao falhou: " . $conn->connect_error);
 }
 ?>
+
