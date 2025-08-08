@@ -7,8 +7,8 @@ $dbname = "crud_exemplo";
 
 $conn = mysqli_connect($host, $user, $password, $dbname); 
 
-if (!$conn->connect_error)) {
-     die("Conexao falhou: " . $conn->connect_error);
+if (!$conn) {
+      echo "Falha na conexão!";
 }
 ?>
 
