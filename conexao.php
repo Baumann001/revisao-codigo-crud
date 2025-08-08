@@ -2,7 +2,7 @@
 // Configurações de conexão
 $host = "localhost";
 $user = "root";
-$password = "";
+$password = "root";
 $database = "crud_exemplo"; 
 
 // Criar conexão
