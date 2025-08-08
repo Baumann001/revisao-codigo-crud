@@ -1,13 +1,17 @@
 <?php
-// Conexão com o banco (contém erro de variável e de conexão)
+// Configurações de conexão
 $host = "localhost";
 $user = "root";
 $password = "";
-$dbname = "crud_exemplo";
+$database = "crud_exemplo"; 
 
-$conn = mysqli_connect($host, $user, $password, $dbname); 
+// Criar conexão
+$conn = mysqli_connect($host, $user, $password, $database);
 
+// Verificar conexão
 if (!$conn) {
-      echo "Falha na conexão!";
+    die("Falha na conexão: " . mysqli_connect_error());
+} else {
+    echo "Conexão bem-sucedida!";
 }
 ?>
