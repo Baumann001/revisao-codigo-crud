@@ -1,17 +1,26 @@
 <?php
-// Cadastro com erros de sintaxe e falta de validação
 include("conexao.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $nome = $_POST["nome"];
-    $email = $_POST["email"]
+    $nome = trim($_POST["nome"]);
+    $email = trim($_POST["email"]);
 
-    $sql = "INSERT INTO usuarios (nome, email) VALUES ('$nome', '$email')";
-    $res = mysqli_query($conn, $sql);
-    if ($res) {
-        echo "Usuário cadastrado com sucesso!";
-    else
-        echo "Erro ao cadastrar!";
+    if (empty($nome) || empty($email)) {
+        echo "Nome e email são obrigatórios!";
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        echo "Email inválido!";
+    } else {
+        $nome = mysqli_real_escape_string($conn, $nome);
+        $email = mysqli_real_escape_string($conn, $email);
+
+        $sql = "INSERT INTO usuarios (nome, email) VALUES ('$nome', '$email')";
+
+        if (mysqli_query($conn, $sql)) {
+            echo "Usuário cadastrado com sucesso!";
+        } else {
+            echo "Erro ao cadastrar: " . mysqli_error($conn);
+        }
+    }
 }
 
 ?>
